@@ -12,7 +12,13 @@
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+
+        <!-- Window transitions -->
+        <item name="android:windowActivityTransitions">true</item>
+
+        <!-- Shared element transitions -->
+        <item name="android:windowSharedElementEnterTransition">@transition/change_image_transform</item>
+        <item name="android:windowSharedElementExitTransition">@transition/change_image_transform</item>
     </style>
     <style name="Base.Theme.Asclepius.NoActionBar" parent="Base.Theme.Asclepius">
         <item name="windowActionBar">false</item>

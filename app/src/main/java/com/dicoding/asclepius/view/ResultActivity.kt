@@ -5,33 +5,48 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.dicoding.asclepius.R
 import com.dicoding.asclepius.databinding.ActivityResultBinding
+import com.dicoding.asclepius.view.HistoryActivity
+import com.example.bottomnavsampleapp.startActivityWithNavBarSharedTransition
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 
 class ResultActivity : AppCompatActivity() {
     private lateinit var binding: ActivityResultBinding
-    private lateinit var bottomNavigationView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
 
-        bottomNavigationView = findViewById(R.id.menuBar)
+        findViewById<NavigationBarView>(R.id.menuBar).apply {
+            selectedItemId = R.id.analyze_menu
+            setOnItemSelectedListener {
+                when (it.itemId) {
+                    R.id.home_menu -> {
+                        startActivityWithNavBarSharedTransition(
+                            this@ResultActivity,
+                            Intent(applicationContext, HomeActivity::class.java)
+                        )
+                        true
+                    }
 
-        bottomNavigationView.selectedItemId = R.id.analyze_menu
-        bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.home_menu -> {
-                    startActivity(Intent(this, HomeActivity::class.java))
-                    true
+                    R.id.analyze_menu -> {
+                        startActivityWithNavBarSharedTransition(
+                            this@ResultActivity,
+                            Intent(applicationContext, MainActivity::class.java)
+                        )
+                        true
+                    }
+
+                    R.id.history_menu -> {
+                        startActivityWithNavBarSharedTransition(
+                            this@ResultActivity,
+                            Intent(applicationContext, HistoryActivity::class.java)
+                        )
+                        true
+                    }
+
+                    else -> false
                 }
-                R.id.analyze_menu -> {
-                    true
-                }
-                R.id.history_menu -> {
-                    startActivity(Intent(this, HistoryActivity::class.java))
-                    true
-                }
-                else -> false
             }
         }
         // TODO: Menampilkan hasil gambar, prediksi, dan confidence score.

@@ -8,35 +8,43 @@ import android.os.Bundle
 import android.widget.Toast
 import com.dicoding.asclepius.R
 import com.dicoding.asclepius.databinding.ActivityMainBinding
+import com.dicoding.asclepius.view.HistoryActivity
+import com.example.bottomnavsampleapp.startActivityWithNavBarSharedTransition
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private var currentImageUri: Uri? = null
-    private lateinit var bottomNavigationView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        bottomNavigationView = findViewById(R.id.menuBar)
+        findViewById<NavigationBarView>(R.id.menuBar).apply {
+            selectedItemId = R.id.analyze_menu
+            setOnItemSelectedListener {
+                when (it.itemId) {
+                    R.id.home_menu -> {
+                        startActivityWithNavBarSharedTransition(
+                            this@MainActivity,
+                            Intent(applicationContext, HomeActivity::class.java)
+                        )
+                        true
+                    }
 
-        bottomNavigationView.selectedItemId = R.id.analyze_menu
-        bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.home_menu -> {
-                    startActivity(Intent(this, HomeActivity::class.java))
-                    true
+                    R.id.history_menu -> {
+                        startActivityWithNavBarSharedTransition(
+                            this@MainActivity,
+                            Intent(applicationContext, HistoryActivity::class.java)
+                        )
+                        true
+                    }
+
+                    R.id.analyze_menu -> true
+                    else -> false
                 }
-                R.id.analyze_menu -> {
-                    true
-                }
-                R.id.history_menu -> {
-                    startActivity(Intent(this, HistoryActivity::class.java))
-                    true
-                }
-                else -> false
             }
         }
     }
