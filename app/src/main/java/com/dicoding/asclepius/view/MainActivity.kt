@@ -8,15 +8,37 @@ import android.os.Bundle
 import android.widget.Toast
 import com.dicoding.asclepius.R
 import com.dicoding.asclepius.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private var currentImageUri: Uri? = null
+    private lateinit var bottomNavigationView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        bottomNavigationView = findViewById(R.id.menuBar)
+
+        bottomNavigationView.selectedItemId = R.id.analyze_menu
+        bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.home_menu -> {
+                    startActivity(Intent(this, HomeActivity::class.java))
+                    true
+                }
+                R.id.analyze_menu -> {
+                    true
+                }
+                R.id.history_menu -> {
+                    startActivity(Intent(this, HistoryActivity::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun startGallery() {
@@ -40,3 +62,5 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
+
+

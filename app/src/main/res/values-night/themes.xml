@@ -1,7 +1,31 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Asclepius" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+    <style name="Base.Theme.Asclepius" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/teal_200</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/dark_tan</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/blue_light</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+
+        <!-- Bottom Bar (Bottom Navigation) -->
+        <item name="colorSurface">@color/dark_brown</item> <!-- Surface color for bottom bar -->
+        <item name="colorOnSurface">@color/white</item> <!-- Text/icons on bottom bar -->
+
+        <!-- Action Bar customization -->
+        <item name="colorPrimaryDark">@color/dark_brown</item> <!-- Darker shade for action bar -->
+        <item name="android:textColorPrimary">@color/white</item> <!-- Text color in action bar -->
+
+        <!-- Background customization -->
+        <item name="android:windowBackground">@color/black</item> <!-- Background color for the app -->
+    </style>
+    <style name="Base.Theme.Asclepius.NoActionBar" parent="Base.Theme.Asclepius">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 </resources>
