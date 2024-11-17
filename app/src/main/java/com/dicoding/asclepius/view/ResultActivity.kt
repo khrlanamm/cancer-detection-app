@@ -14,6 +14,4 @@ class ResultActivity : AppCompatActivity() {
 
         // TODO: Menampilkan hasil gambar, prediksi, dan confidence score.
     }
-
-
 }
