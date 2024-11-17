@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Cancer Detection</string>
+    <string name="app_name">Cancer Detector</string>
     <string name="camera_x">CameraX</string>
     <string name="camera">Kamera</string>
     <string name="gallery">Galeri</string>

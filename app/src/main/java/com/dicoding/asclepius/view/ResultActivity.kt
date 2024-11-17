@@ -3,6 +3,7 @@ package com.dicoding.asclepius.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import com.dicoding.asclepius.R
 import com.dicoding.asclepius.databinding.ActivityResultBinding
 import com.dicoding.asclepius.view.HistoryActivity
@@ -15,6 +16,8 @@ class ResultActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+
         setContentView(R.layout.activity_result)
 
         findViewById<NavigationBarView>(R.id.menuBar).apply {

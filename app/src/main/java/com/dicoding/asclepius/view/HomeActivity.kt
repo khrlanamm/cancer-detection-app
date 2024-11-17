@@ -24,6 +24,8 @@ class HomeActivity : AppCompatActivity() {
             show = false
         }, 2000)
 
+        enableEdgeToEdge()
+
         setContentView(R.layout.activity_home)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
