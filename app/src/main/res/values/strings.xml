@@ -52,4 +52,5 @@
     <string name="history_menu">History</string>
     <string name="logo_description">Cancer Detection</string>
     <string name="failed_clasifying">Gagal melakukan pengecekan, coba ulangi langkah!</string>
+    <string name="save_button">Simpan Analisis</string>
 </resources>

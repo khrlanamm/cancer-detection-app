@@ -8,6 +8,8 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import com.dicoding.asclepius.R
+import com.dicoding.asclepius.data.local.entity.AnalyzeEntity
+import com.dicoding.asclepius.data.local.room.AnalyzeDatabase
 import com.dicoding.asclepius.databinding.ActivityMainBinding
 import com.dicoding.asclepius.databinding.ActivityResultBinding
 import com.dicoding.asclepius.helper.ImageClassifierHelper
@@ -15,7 +17,12 @@ import com.dicoding.asclepius.view.HistoryActivity
 import com.example.bottomnavsampleapp.startActivityWithNavBarSharedTransition
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.tensorflow.lite.task.vision.classifier.Classifications
+import java.io.File
+import java.io.FileOutputStream
 
 class ResultActivity : AppCompatActivity() {
     private lateinit var binding: ActivityResultBinding
@@ -90,6 +97,19 @@ class ResultActivity : AppCompatActivity() {
             Log.e(TAG, "No image URI provided")
             finish()
         }
+        binding.saveButton.setOnClickListener {
+            val imageUriString = intent.getStringExtra(IMAGE_URI)
+            val result = binding.resultText.text.toString()
+
+            if (imageUriString != null) {
+                val imageUri = Uri.parse(imageUriString)
+                showToast("Data saved")
+                savePredictionToDatabase(imageUri, result)
+            } else {
+                showToast("No image URI provided")
+                finish()
+            }
+        }
     }
     private fun displayImage(uri: Uri) {
         Log.d(TAG, "Displaying image: $uri")
@@ -105,6 +125,42 @@ class ResultActivity : AppCompatActivity() {
             return String.format("%.2f%%", this * 100)
         }
         binding.resultText.text = "$label ${score.formatToString()}"
+    }
+
+    private fun moveToHistory(imageUri: Uri, result: String) {
+        val intent = Intent(this, HistoryActivity::class.java)
+        intent.putExtra(RESULT_TEXT, result)
+        intent.putExtra(IMAGE_URI, imageUri.toString())
+        setResult(RESULT_OK, intent)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun savePredictionToDatabase(imageUri: Uri, result: String) {
+        if (result.isNotEmpty()) {
+            val fileName = "cropped_image_${System.currentTimeMillis()}.jpg"
+            val destinationUri = Uri.fromFile(File(cacheDir, fileName))
+            contentResolver.openInputStream(imageUri)?.use { input ->
+                FileOutputStream(File(cacheDir, fileName)).use { output ->
+                    input.copyTo(output)
+                }
+            }
+            val prediction = AnalyzeEntity(imagePath = destinationUri.toString(), result = result)
+            GlobalScope.launch(Dispatchers.IO) {
+                val database = AnalyzeDatabase.getDatabase(applicationContext)
+                try {
+                    database.analyzeDao().insertPrediction(prediction)
+                    Log.d(TAG, "Prediction saved successfully: $prediction")
+                    val predictions = database.analyzeDao().getAllPredictions()
+                    Log.d(TAG, "All predictions after save: $predictions")
+                    moveToHistory(destinationUri, result)
+                } catch (e: Exception) {
+                    Log.e(TAG, "Failed to save prediction: $prediction", e)
+                }
+            }
+        } else {
+            Log.e(TAG, "Result is empty, cannot save prediction to database.")
+        }
     }
 
     private fun showToast(message: String) {
