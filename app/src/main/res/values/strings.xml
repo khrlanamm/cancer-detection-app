@@ -58,4 +58,6 @@
     <string name="cancer_title">Cancer Title</string>
     <string name="no_history_found">Tidak ada data tersimpan\nLakukan analisis dan simpan hasilnya!</string>
     <string name="x">x</string>
+    <string name="article_title">Lorem Ipsum Dolor Sit Amet Consectetur Adipiscing Elit Sed Do Eiusmod Tempor Incididunt Ut Labore Et Dolore Magna Aliqua</string>
+    <string name="article_description">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
 </resources>
