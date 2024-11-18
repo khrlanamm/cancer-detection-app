@@ -4,18 +4,21 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.dicoding.asclepius.view.HistoryActivity
 import com.dicoding.asclepius.R
+import com.dicoding.asclepius.view.HistoryActivity
+import com.dicoding.asclepius.view.MainActivity  // Make sure to import MainActivity
 import com.example.bottomnavsampleapp.startActivityWithNavBarSharedTransition
 import com.google.android.material.navigation.NavigationBarView
 
 class HomeActivity : AppCompatActivity() {
     private var show = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -28,12 +31,14 @@ class HomeActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_home)
 
+        // Handle window insets
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
+        // Set up Navigation Bar
         findViewById<NavigationBarView>(R.id.menuBar).apply {
             selectedItemId = R.id.home_menu
             setOnItemSelectedListener {
@@ -58,6 +63,11 @@ class HomeActivity : AppCompatActivity() {
                     else -> false
                 }
             }
+        }
+
+        findViewById<TextView>(R.id.greetingsButton).setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 }
