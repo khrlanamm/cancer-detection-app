@@ -11,6 +11,7 @@
         android:id="@+id/rvHistory"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginVertical="40dp"
         android:layout_above="@id/menuBar"
         tools:listitem="@layout/analyze_item"/>
 

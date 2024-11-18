@@ -31,8 +31,12 @@
                 android:id="@+id/result_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:text="@string/result" />
+                android:layout_margin="24dp"
+                android:gravity="center"
+                android:text="@string/result"
+                android:textStyle="bold"
+                android:textColor="?attr/colorPrimary"/>
+
             <Button
                 android:id="@+id/saveButton"
                 android:layout_width="wrap_content"
