@@ -34,7 +34,10 @@ class AnalyzeAdapter(private val analyzeList: List<AnalyzeEntity>) :
         if (currentItem.result.isNotEmpty()) {
             holder.bind(currentItem)
             holder.itemView.visibility = View.VISIBLE
-            holder.itemView.layoutParams = RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT) // Atur kembali parameter tata letak
+            holder.itemView.layoutParams = RecyclerView.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            ) // Atur kembali parameter tata letak
         } else {
             holder.itemView.visibility = View.GONE
             holder.itemView.layoutParams = RecyclerView.LayoutParams(0, 0)

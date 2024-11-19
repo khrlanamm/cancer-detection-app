@@ -2,20 +2,17 @@ package com.dicoding.asclepius.view
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.asclepius.R
 import com.dicoding.asclepius.data.local.entity.AnalyzeEntity
 import com.dicoding.asclepius.data.local.room.AnalyzeDatabase
-import com.dicoding.asclepius.databinding.ActivityMainBinding
 import com.dicoding.asclepius.databinding.ActivityResultBinding
 import com.dicoding.asclepius.helper.ImageClassifierHelper
-import com.dicoding.asclepius.view.HistoryActivity
 import com.example.bottomnavsampleapp.startActivityWithNavBarSharedTransition
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -111,6 +108,7 @@ class ResultActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun displayImage(uri: Uri) {
         Log.d(TAG, "Displaying image: $uri")
         binding.resultImage.setImageURI(uri)

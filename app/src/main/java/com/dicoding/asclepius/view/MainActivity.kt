@@ -1,22 +1,19 @@
 package com.dicoding.asclepius.view
 
-import android.Manifest
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.asclepius.R
 import com.dicoding.asclepius.databinding.ActivityMainBinding
-import com.yalantis.ucrop.UCrop
-import com.dicoding.asclepius.view.HistoryActivity
 import com.example.bottomnavsampleapp.startActivityWithNavBarSharedTransition
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
+import com.yalantis.ucrop.UCrop
 import java.io.File
 
 class MainActivity : AppCompatActivity() {

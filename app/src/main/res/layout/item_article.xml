@@ -8,8 +8,8 @@
     android:layout_gravity="center"
     android:layout_marginTop="6dp"
     android:layout_marginBottom="6dp"
-    card_view:cardCornerRadius="20dp"
-    card_view:cardBackgroundColor="@color/white">
+    card_view:cardBackgroundColor="@color/white"
+    card_view:cardCornerRadius="20dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -33,9 +33,9 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_toEndOf="@id/articleImage"
+            android:maxLines="3"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:maxLines="3"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/articleImage"
             card_view:layout_constraintTop_toTopOf="@+id/articleImage"

@@ -3,11 +3,11 @@ package com.example.bottomnavsampleapp
 import android.app.Activity
 import android.app.ActivityOptions
 import android.content.Intent
-import com.google.android.material.navigation.NavigationBarView
 import com.dicoding.asclepius.R
+import com.google.android.material.navigation.NavigationBarView
 
 fun NavigationBarView.startActivityWithNavBarSharedTransition(
-    activity:Activity,
+    activity: Activity,
     intent: Intent
 ) {
     val options = ActivityOptions.makeSceneTransitionAnimation(

@@ -14,12 +14,20 @@ class ArticleRepository {
     ) {
         ApiClient.articleApiService.searchHealthNews("kanker", "id", ApiConfig.API_KEY)
             .enqueue(object : Callback<ArticleResponse> {
-                override fun onResponse(call: Call<ArticleResponse>, response: Response<ArticleResponse>) {
+                override fun onResponse(
+                    call: Call<ArticleResponse>,
+                    response: Response<ArticleResponse>
+                ) {
                     if (response.isSuccessful) {
                         val articles = response.body()?.articles ?: emptyList()
                         val articleList = articles.mapNotNull { article ->
                             if (!article.title.isNullOrEmpty() && !article.urlToImage.isNullOrEmpty() && !article.url.isNullOrEmpty() && !article.description.isNullOrEmpty()) {
-                                ArticleItem(article.title, article.description, article.urlToImage, article.url)
+                                ArticleItem(
+                                    article.title,
+                                    article.description,
+                                    article.urlToImage,
+                                    article.url
+                                )
                             } else {
                                 null
                             }

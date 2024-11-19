@@ -8,7 +8,7 @@ import com.dicoding.asclepius.data.ArticleRepository
 
 class ArticleViewModel : ViewModel() {
     private val articleRepository = ArticleRepository()
-    private val _articleList = MutableLiveData<List< ArticleItem>>()
+    private val _articleList = MutableLiveData<List<ArticleItem>>()
     val articleList: LiveData<List<ArticleItem>> = _articleList
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading

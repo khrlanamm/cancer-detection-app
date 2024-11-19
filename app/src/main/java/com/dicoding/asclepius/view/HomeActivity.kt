@@ -8,8 +8,6 @@ import android.os.Looper
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
@@ -34,7 +32,6 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()
 
         installSplashScreen().setKeepOnScreenCondition { show }
         Handler(Looper.getMainLooper()).postDelayed({
@@ -95,6 +92,7 @@ class HomeActivity : AppCompatActivity() {
             articleAdapter.submitList(articleList)
         })
     }
+
     private fun initRecyclerView() {
         articleAdapter = ArticleAdapter()
         binding.ArticlesRecyclerView.apply {
@@ -102,15 +100,18 @@ class HomeActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@HomeActivity)
         }
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
                 onBackPressed()
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
+
     fun openNewsUrl(view: View) {
         val url = view.getTag(R.id.articleTitle) as? String
         url?.let {
