@@ -86,8 +86,10 @@ class HomeActivity : AppCompatActivity() {
         }
 
         initRecyclerView()
-
         articleViewModel = ViewModelProvider(this).get(ArticleViewModel::class.java)
+        articleViewModel.isLoading.observe(this) { isLoading ->
+            binding.progressbar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
         articleViewModel.fetchHealthNews()
         articleViewModel.articleList.observe(this, Observer { articleList ->
             articleAdapter.submitList(articleList)

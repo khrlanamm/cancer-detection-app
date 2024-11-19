@@ -6,11 +6,10 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiService {
-    @GET("top-headlines")
+    @GET("everything")
     fun searchHealthNews(
         @Query("q") query: String,
-        @Query("category") category: String,
-        @Query("country") language: String,
+        @Query("language") language: String,
         @Query("apiKey") apiKey: String
     ): Call<ArticleResponse>
 }

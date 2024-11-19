@@ -12,7 +12,7 @@ class ArticleRepository {
         onSuccess: (List<ArticleItem>) -> Unit,
         onFailure: (String) -> Unit
     ) {
-        ApiClient.articleApiService.searchHealthNews("cancer", "health", "us", ApiConfig.API_KEY)
+        ApiClient.articleApiService.searchHealthNews("kanker", "id", ApiConfig.API_KEY)
             .enqueue(object : Callback<ArticleResponse> {
                 override fun onResponse(call: Call<ArticleResponse>, response: Response<ArticleResponse>) {
                     if (response.isSuccessful) {
